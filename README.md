@@ -1,97 +1,116 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# UserAuthApp
 
-# Getting Started
+A simple React Native CLI (TypeScript) authentication demo app.  
+Implements **Signup**, **Login**, and **Home** screens with local storage (AsyncStorage) and a password visibility toggle using custom icons.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+##  Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- **User Registration (Signup)**  
+  - Name, Email, Password fields with client-side validation  
+  - Stores users locally in AsyncStorage (simulating a backend)  
+  - Automatically logs the user in after signup  
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- **User Login**  
+  - Validates email and password  
+  - Displays error messages for invalid credentials  
+  - Persists the logged-in user across app restarts  
 
-```sh
-# Using npm
-npm start
+- **Home Screen**  
+  - Displays logged-in user’s name and email  
+  - Logout button to clear session  
 
-# OR using Yarn
-yarn start
-```
+- **Password Visibility Toggle**  
+  - Custom icons (`eye.png` and `noViewEye.png`) to show or hide password  
+  - Implemented on both Login and Signup screens  
 
-## Step 2: Build and run your app
+- **React Context API**  
+  - Centralized auth state with login, signup, logout functions  
+  - Automatically switches navigation stacks based on auth state  
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+- **Typed Navigation**  
+  - Uses React Navigation Native Stack with TypeScript support  
 
-### Android
+---
 
-```sh
-# Using npm
-npm run android
+##  Project Structure
 
-# OR using Yarn
-yarn android
-```
+UserAuthApp/
+├─ App.tsx
+├─ assets/
+│ ├─ eye.png
+│ └─ noViewEye.png
+└─ src/
+├─ context/AuthContext.tsx
+├─ navigation/index.tsx
+├─ components/LoadingScreen.tsx
+└─ screens/
+├─ LoginScreen.tsx
+├─ SignupScreen.tsx
+└─ HomeScreen.tsx
 
-### iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
 
-```sh
-bundle install
-```
+##  Setup Instructions
 
-Then, and every time you update your native dependencies, run:
+ 1. Clone the Repository
 
-```sh
-bundle exec pod install
-```
+ git clone https://github.com/SHASWATprakash/UserAuthApp.git
+ cd UserAuthApp
+ 2. Install Dependencies
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+ npm install
+3. Install iOS Pods (if on macOS)
 
-```sh
-# Using npm
-npm run ios
+ cd ios && pod install && cd ..
+4. Start the Metro Bundler
 
-# OR using Yarn
-yarn ios
-```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+ npx react-native start
+5. Run the App
+Android:
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
-## Step 3: Modify your app
 
-Now that you have successfully run the app, let's make changes!
+ npx react-native run-android
+iOS:
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+ npx react-native run-ios
+6. Reset Metro Cache (if needed)
+If you change assets or encounter module errors:
 
-## Congratulations! :tada:
 
-You've successfully run and modified your React Native App. :partying_face:
+ npx react-native start --reset-cache
 
-### Now what?
+##  Usage
+Signup with a new name/email/password.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+After signup you are automatically logged in and taken to the Home screen.
 
-# Troubleshooting
+Logout from the Home screen to return to the Login screen.
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+Login again with the same credentials to test persistence.
 
-# Learn More
+Toggle Password Visibility by tapping the eye/no-eye icon next to the password field.
 
-To learn more about React Native, take a look at the following resources:
+##  Security Note
+This app stores user data in plaintext locally using AsyncStorage — this is for demonstration only.
+For production apps:
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Use a secure backend with hashed passwords.
+
+Store tokens securely (e.g. expo-secure-store or Keychain/Keystore).
+
+##  Tech Stack
+React Native CLI (TypeScript)
+
+React Navigation (Native Stack)
+
+React Context API
+
+AsyncStorage for local data persistence
+
