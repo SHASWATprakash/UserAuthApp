@@ -118,4 +118,4 @@ AsyncStorage for local data persistence
 
 ## 🎥 Demo Video
 
-https://github.com/SHASWATprakash/UserAuthApp/raw/main/demo/Demo.mp4
+https://github.com/SHASWATprakash/UserAuthApp/raw/main/demo/Demo.MP4
