@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation';
 import AuthContext from '../context/AuthContext';
@@ -9,6 +9,8 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Signup'>;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function SignupScreen({ navigation }: Props) {
+    const eye = require('../../assets/eye.png');
+const noViewEye = require('../../assets/noViewEye.png');
   const { signup } = useContext(AuthContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -63,7 +65,10 @@ export default function SignupScreen({ navigation }: Props) {
           style={[styles.input, { flex: 1 }]}
         />
         <TouchableOpacity onPress={() => setShowPassword(s => !s)} style={styles.eyeBtn}>
-          <Text>{showPassword ? 'Hide' : 'Show'}</Text>
+          <Image
+              source={showPassword ? noViewEye : eye}
+              style={styles.eyeImage}
+            />
         </TouchableOpacity>
       </View>
 
@@ -93,7 +98,8 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   passwordRow: { flexDirection: 'row', alignItems: 'center', width: 300 },
-  eyeBtn: { padding: 8 },
+    eyeBtn: { padding: 8, justifyContent: 'center', alignItems: 'center' },
+  eyeImage: { width: 24, height: 24, resizeMode: 'contain' },
   btn: {
     marginTop: 16,
     width: 300,
